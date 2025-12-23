@@ -47,8 +47,14 @@ export async function signIn(email: string, password: string) {
 
 // Cerrar sesión
 export async function signOut() {
-    const { error } = await supabase.auth.signOut();
-    if (error) throw error;
+    try {
+        await supabase.auth.signOut();
+    } catch (error: any) {
+        // Ignorar error si no hay sesión activa
+        if (error?.name !== 'AuthSessionMissingError') {
+            throw error;
+        }
+    }
 }
 
 // Obtener usuario actual

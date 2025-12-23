@@ -86,7 +86,10 @@
         "errorInvalidFile": "Invalid file. Make sure it's a valid Excel or CSV file.",
         "errorTooLarge": "File is too large. Maximum 10MB.",
         "errorNoData": "No valid data found in the file.",
-        "errorColumns": "File must contain required columns: Date, Product, Quantity, Price."
+        "errorColumns": "File must contain required columns: Date, Product, Quantity, Price.",
+        "success": "Success!",
+        "savedMessage": "{{count}} sales saved successfully",
+        "viewDashboard": "View Dashboard"
     },
     "reports": {
         "title": "Reports",
@@ -114,7 +117,15 @@
         "loadingData": "Loading data...",
         "successPDF": "PDF generated successfully",
         "successExcel": "Excel generated successfully",
-        "errorExport": "Error generating report"
+        "errorExport": "Error generating report",
+        "noDataExport": "No data",
+        "noDataExportText": "There is no data to export",
+        "pdfSuccess": "PDF Downloaded!",
+        "pdfSuccessText": "The PDF report has been downloaded successfully",
+        "pdfError": "Error generating PDF",
+        "excelSuccess": "Excel Downloaded!",
+        "excelSuccessText": "The Excel report has been downloaded successfully",
+        "excelError": "Error generating Excel file"
     },
     "theme": {
         "light": "Light Theme",

@@ -168,10 +168,10 @@ export default function UploadPage() {
             });
 
             await Swal.fire({
-                title: '¡Éxito!',
-                text: `${salesData.length} ventas guardadas correctamente`,
+                title: t('upload.success'),
+                text: t('upload.savedMessage', { count: salesData.length }),
                 icon: 'success',
-                confirmButtonText: 'Ver Dashboard',
+                confirmButtonText: t('upload.viewDashboard'),
                 confirmButtonColor: '#8b5cf6',
                 background: '#1e293b',
                 color: '#f1f5f9',
@@ -184,15 +184,15 @@ export default function UploadPage() {
             console.error('Error:', err);
 
             await Swal.fire({
-                title: 'Error',
-                text: err.message || 'Error al guardar los datos',
+                title: t('common.error'),
+                text: err.message || t('errors.generic'),
                 icon: 'error',
-                confirmButtonText: 'Entendido',
+                confirmButtonText: 'OK',
                 confirmButtonColor: '#ef4444',
                 background: '#1e293b',
                 color: '#f1f5f9',
             });
-            setError(err.message || 'Error al guardar los datos');
+            setError(err.message || t('errors.generic'));
         } finally {
             setUploading(false);
         }

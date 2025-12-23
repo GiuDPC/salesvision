@@ -86,7 +86,10 @@
         "errorInvalidFile": "Archivo inválido. Asegúrate de que sea un archivo Excel o CSV válido.",
         "errorTooLarge": "El archivo es demasiado grande. Máximo 10MB.",
         "errorNoData": "No se encontraron datos válidos en el archivo.",
-        "errorColumns": "El archivo debe contener las columnas requeridas: Fecha, Producto, Cantidad, Precio."
+        "errorColumns": "El archivo debe contener las columnas requeridas: Fecha, Producto, Cantidad, Precio.",
+        "success": "¡Éxito!",
+        "savedMessage": "{{count}} ventas guardadas correctamente",
+        "viewDashboard": "Ver Dashboard"
     },
     "reports": {
         "title": "Reportes",
@@ -114,7 +117,15 @@
         "loadingData": "Cargando datos...",
         "successPDF": "PDF generado exitosamente",
         "successExcel": "Excel generado exitosamente",
-        "errorExport": "Error al generar el reporte"
+        "errorExport": "Error al generar el reporte",
+        "noDataExport": "Sin datos",
+        "noDataExportText": "No hay datos para exportar",
+        "pdfSuccess": "\u00a1PDF Descargado!",
+        "pdfSuccessText": "El reporte PDF se ha descargado correctamente",
+        "pdfError": "Error al generar el PDF",
+        "excelSuccess": "\u00a1Excel Descargado!",
+        "excelSuccessText": "El reporte Excel se ha descargado correctamente",
+        "excelError": "Error al generar el archivo Excel"
     },
     "theme": {
         "light": "Tema Claro",

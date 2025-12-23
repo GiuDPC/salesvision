@@ -103,6 +103,14 @@ button {
   justify-content: center;
   padding: 2rem;
   background: linear-gradient(135deg, var(--bg-primary) 0%, #1a1a2e 100%);
+  position: relative;
+}
+
+.login-language-selector {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
 }
 
 .login-card {
@@ -333,6 +341,53 @@ button {
   position: sticky;
   top: 0;
   z-index: 100;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+
+  .dashboard-header,
+  .reports-header,
+  .upload-header {
+    padding: 1.25rem 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .header-left {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .header-right {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .header-left h1 {
+    font-size: 1.25rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .upload-nav-button,
+  .reports-nav-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .user-email {
+    display: none;
+  }
+
+  .logout-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
 }
 
 .header-left {

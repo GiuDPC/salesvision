@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { signIn, signUp } from '../lib/supabase';
 import Swal from 'sweetalert2';
 import { LogIn, UserPlus, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import LanguageSelector from '../components/LanguageSelector';
 
 export default function Login() {
     const { t } = useTranslation();
@@ -34,8 +35,8 @@ export default function Login() {
                 await signIn(email, password);
 
                 await Swal.fire({
-                    title: '¡Bienvenido!',
-                    text: 'Iniciando sesión...',
+                    title: t('login.welcomeBack'),
+                    text: t('login.loggingIn'),
                     icon: 'success',
                     timer: 1500,
                     showConfirmButton: false,
@@ -48,14 +49,14 @@ export default function Login() {
                 await signUp(email, password);
 
                 await Swal.fire({
-                    title: '¡Cuenta Creada!',
+                    title: t('login.accountCreated'),
                     html: `
-                        <p style="margin-bottom: 1rem;">Te hemos enviado un email a:</p>
+                        <p style="margin-bottom: 1rem;">${t('login.checkEmail')}</p>
                         <strong style="color: #8b5cf6; font-size: 1.1rem;">${email}</strong>
-                        <p style="margin-top: 1rem; color: #94a3b8;">Por favor confirma tu cuenta haciendo clic en el enlace del correo.</p>
+                        <p style="margin-top: 1rem; color: #94a3b8;">${t('login.confirmEmailNote')}</p>
                     `,
                     icon: 'success',
-                    confirmButtonText: 'Ir a Iniciar Sesión',
+                    confirmButtonText: t('login.loginHere'),
                     confirmButtonColor: '#8b5cf6',
                     background: '#1e293b',
                     color: '#f1f5f9',
@@ -65,13 +66,13 @@ export default function Login() {
                 setPassword('');
             }
         } catch (err) {
-            const message = err instanceof Error ? err.message : 'Error desconocido';
+            const message = err instanceof Error ? err.message : t('errors.generic');
 
             await Swal.fire({
-                title: 'Error',
+                title: t('common.error'),
                 text: message,
                 icon: 'error',
-                confirmButtonText: 'Entendido',
+                confirmButtonText: 'OK',
                 confirmButtonColor: '#ef4444',
                 background: '#1e293b',
                 color: '#f1f5f9',
@@ -83,10 +84,13 @@ export default function Login() {
 
     return (
         <div className="login-container">
+            <div className="login-language-selector">
+                <LanguageSelector />
+            </div>
             <div className="login-card fade-in">
                 <div className="login-header">
                     <h1>SalesVision</h1>
-                    <p>Plataforma de Analytics de Ventas</p>
+                    <p>{t('login.subtitle')}</p>
                 </div>
 
                 <form

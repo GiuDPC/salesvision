@@ -91,8 +91,8 @@ export default function Reports() {
     const exportToPDF = async () => {
         if (filteredSales.length === 0) {
             await Swal.fire({
-                title: 'Sin datos',
-                text: 'No hay datos para exportar',
+                title: t('reports.noDataExport'),
+                text: t('reports.noDataExportText'),
                 icon: 'warning',
                 confirmButtonColor: '#8b5cf6',
                 background: '#1e293b',
@@ -154,8 +154,8 @@ export default function Reports() {
             doc.save(`salesvision_reporte_${new Date().toISOString().split('T')[0]}.pdf`);
 
             await Swal.fire({
-                title: '¡PDF Descargado!',
-                text: 'El reporte PDF se ha descargado correctamente',
+                title: t('reports.pdfSuccess'),
+                text: t('reports.pdfSuccessText'),
                 icon: 'success',
                 confirmButtonColor: '#8b5cf6',
                 background: '#1e293b',
@@ -166,8 +166,8 @@ export default function Reports() {
             console.error('Error generating PDF:', error);
 
             await Swal.fire({
-                title: 'Error',
-                text: 'Error al generar el PDF',
+                title: t('common.error'),
+                text: t('reports.pdfError'),
                 icon: 'error',
                 confirmButtonColor: '#ef4444',
                 background: '#1e293b',
@@ -181,8 +181,8 @@ export default function Reports() {
     const exportToExcel = async () => {
         if (filteredSales.length === 0) {
             await Swal.fire({
-                title: 'Sin datos',
-                text: 'No hay datos para exportar',
+                title: t('reports.noDataExport'),
+                text: t('reports.noDataExportText'),
                 icon: 'warning',
                 confirmButtonColor: '#8b5cf6',
                 background: '#1e293b',
@@ -321,8 +321,8 @@ export default function Reports() {
             saveAs(blob, `SalesVision_Reporte_${new Date().toISOString().split('T')[0]}.xlsx`);
 
             await Swal.fire({
-                title: '¡Excel Descargado!',
-                text: 'El reporte Excel se ha descargado correctamente',
+                title: t('reports.excelSuccess'),
+                text: t('reports.excelSuccessText'),
                 icon: 'success',
                 confirmButtonColor: '#8b5cf6',
                 background: '#1e293b',
@@ -333,8 +333,8 @@ export default function Reports() {
             console.error('Error generating Excel:', error);
 
             await Swal.fire({
-                title: 'Error',
-                text: 'Error al generar el archivo Excel',
+                title: t('common.error'),
+                text: t('reports.excelError'),
                 icon: 'error',
                 confirmButtonColor: '#ef4444',
                 background: '#1e293b',
