@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import * as ExcelJS from 'exceljs';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../hooks/useAuth';
@@ -7,6 +8,7 @@ import Swal from 'sweetalert2';
 import { ArrowLeft, FileSpreadsheet, X, Check, CloudUpload } from 'lucide-react';
 
 export default function UploadPage() {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const { user } = useAuth();
     const [file, setFile] = useState<File | null>(null);
@@ -202,7 +204,8 @@ export default function UploadPage() {
                 <button onClick={() => navigate('/dashboard')} className="back-button">
                     <ArrowLeft size={18} /> Dashboard
                 </button>
-                <h1>Subir Datos</h1>
+                <h1 className="upload-title">{t('upload.title')}</h1>
+                <div className="header-spacer"></div>
             </header>
 
             <main className="upload-main">
@@ -216,15 +219,15 @@ export default function UploadPage() {
                     {processing ? (
                         <div className="processing-state">
                             <div className="spinner"></div>
-                            <p>Procesando archivo...</p>
+                            <p>{t('upload.processing')}</p>
                         </div>
                     ) : !file ? (
                         <>
                             <CloudUpload size={64} className="drop-icon-svg" />
-                            <p>Arrastra tu archivo aquí</p>
+                            <p>{t('upload.dropZoneTitle')}</p>
                             <span>o</span>
                             <label className="file-button">
-                                Seleccionar archivo
+                                {t('upload.selectFile')}
                                 <input
                                     type="file"
                                     accept=".xlsx,.xls,.csv"
@@ -232,7 +235,7 @@ export default function UploadPage() {
                                     hidden
                                 />
                             </label>
-                            <p className="file-types">Formatos: .xlsx, .xls, .csv</p>
+                            <p className="file-types">{t('upload.supportedFormats')}</p>
                         </>
                     ) : (
                         <div className="file-info">

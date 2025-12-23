@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
 import { signOut, supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
@@ -25,9 +26,12 @@ import {
     FileText,
     LogOut,
     BarChart3,
-    Globe
+    Globe,
 } from 'lucide-react';
 import type { Sale } from '../types';
+import ThemeToggle from '../components/ThemeToggle';
+import LanguageSelector from '../components/LanguageSelector';
+import Pagination from '../components/Pagination';
 
 const COLORS = ['#8b5cf6', '#10b981', '#f59e0b', '#ef4444', '#3b82f6', '#ec4899'];
 
@@ -37,11 +41,14 @@ interface Filters {
 }
 
 export default function Dashboard() {
+    const { t } = useTranslation();
     const { user } = useAuth();
     const navigate = useNavigate();
 
     const [sales, setSales] = useState<Sale[]>([]);
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
 
     const [filters, setFilters] = useState<Filters>({
         dateRange: 'all',
@@ -163,7 +170,7 @@ export default function Dashboard() {
     };
 
     const getRecentSales = () => {
-        return filteredSales.slice(0, 5).map((sale, index) => ({
+        return filteredSales.map((sale, index) => ({
             id: index,
             product: sale.product_name,
             amount: Number(sale.total_amount || 0),
@@ -183,16 +190,18 @@ export default function Dashboard() {
                 <div className="header-left">
                     <h1>SalesVision</h1>
                     <button onClick={() => navigate('/upload')} className="upload-nav-button">
-                        <Upload size={16} /> Subir Datos
+                        <Upload size={16} /> {t('dashboard.upload')}
                     </button>
                     <button onClick={() => navigate('/reports')} className="reports-nav-button">
-                        <FileText size={16} /> Reportes
+                        <FileText size={16} /> {t('dashboard.reports')}
                     </button>
                 </div>
                 <div className="header-right">
+                    <LanguageSelector />
+                    <ThemeToggle />
                     <span className="user-email">{user?.email}</span>
                     <button onClick={handleLogout} className="logout-button">
-                        <LogOut size={16} /> Salir
+                        <LogOut size={16} /> {t('dashboard.logout')}
                     </button>
                 </div>
             </header>
@@ -201,44 +210,44 @@ export default function Dashboard() {
                 {loading ? (
                     <div className="loading-screen">
                         <div className="spinner"></div>
-                        <p>Cargando datos...</p>
+                        <p>{t('dashboard.loadingData')}</p>
                     </div>
                 ) : sales.length === 0 ? (
                     <div className="empty-state fade-in">
                         <BarChart3 size={80} className="empty-icon-svg" />
-                        <h2>No hay datos de ventas</h2>
-                        <p>Sube tu primer archivo Excel para ver las métricas</p>
+                        <h2>{t('dashboard.noData')}</h2>
+                        <p>{t('upload.dropZoneSubtitle')}</p>
                         <button onClick={() => navigate('/upload')} className="upload-nav-button">
-                            <Upload size={16} /> Subir Datos
+                            <Upload size={16} /> {t('dashboard.upload')}
                         </button>
                     </div>
                 ) : (
                     <>
                         <section className="filters-section fade-in">
                             <div className="filter-group">
-                                <label htmlFor="dateRange">Período:</label>
+                                <label htmlFor="dateRange">{t('dashboard.filters')}:</label>
                                 <select
                                     id="dateRange"
                                     value={filters.dateRange}
                                     onChange={(e) => setFilters(f => ({ ...f, dateRange: e.target.value as Filters['dateRange'] }))}
                                     className="filter-select"
                                 >
-                                    <option value="all">Todo el tiempo</option>
-                                    <option value="7days">Últimos 7 días</option>
-                                    <option value="30days">Últimos 30 días</option>
-                                    <option value="90days">Últimos 90 días</option>
+                                    <option value="all">{t('dashboard.all')}</option>
+                                    <option value="7days">{t('dashboard.last7Days')}</option>
+                                    <option value="30days">{t('dashboard.last30Days')}</option>
+                                    <option value="90days">{t('dashboard.last90Days')}</option>
                                 </select>
                             </div>
 
                             <div className="filter-group">
-                                <label htmlFor="category">Categoría:</label>
+                                <label htmlFor="category">{t('dashboard.category')}:</label>
                                 <select
                                     id="category"
                                     value={filters.category}
                                     onChange={(e) => setFilters(f => ({ ...f, category: e.target.value }))}
                                     className="filter-select"
                                 >
-                                    <option value="all">Todas las categorías</option>
+                                    <option value="all">{t('dashboard.all')}</option>
                                     {categories.map(cat => (
                                         <option key={cat} value={cat}>{cat}</option>
                                     ))}
@@ -250,7 +259,7 @@ export default function Dashboard() {
                                     onClick={() => setFilters({ dateRange: 'all', category: 'all' })}
                                     className="clear-filters-button"
                                 >
-                                    Limpiar filtros
+                                    {t('common.cancel')}
                                 </button>
                             )}
                         </section>
@@ -261,7 +270,7 @@ export default function Dashboard() {
                                     <DollarSign size={28} />
                                 </div>
                                 <div className="metric-content">
-                                    <h3>Ventas Totales</h3>
+                                    <h3>{t('dashboard.totalSales')}</h3>
                                     <p className="metric-value">${metrics.totalSales.toLocaleString()}</p>
                                 </div>
                             </div>
@@ -271,7 +280,7 @@ export default function Dashboard() {
                                     <Package size={28} />
                                 </div>
                                 <div className="metric-content">
-                                    <h3>Registros</h3>
+                                    <h3>{t('dashboard.totalOrders')}</h3>
                                     <p className="metric-value">{metrics.totalOrders.toLocaleString()}</p>
                                 </div>
                             </div>
@@ -281,7 +290,7 @@ export default function Dashboard() {
                                     <Tag size={28} />
                                 </div>
                                 <div className="metric-content">
-                                    <h3>Productos</h3>
+                                    <h3>{t('dashboard.products')}</h3>
                                     <p className="metric-value">{metrics.totalProducts}</p>
                                 </div>
                             </div>
@@ -291,7 +300,7 @@ export default function Dashboard() {
                                     <TrendingUp size={28} />
                                 </div>
                                 <div className="metric-content">
-                                    <h3>Promedio por Venta</h3>
+                                    <h3>{t('dashboard.avgOrderValue')}</h3>
                                     <p className="metric-value">${metrics.avgOrderValue.toFixed(2)}</p>
                                 </div>
                             </div>
@@ -299,7 +308,7 @@ export default function Dashboard() {
 
                         {salesByDate.length > 1 && (
                             <section className="chart-card chart-full-width fade-in-up" style={{ animationDelay: '0.5s' }}>
-                                <h3>Tendencia de Ventas</h3>
+                                <h3>{t('dashboard.dailySales')}</h3>
                                 <ResponsiveContainer width="100%" height={300}>
                                     <AreaChart data={salesByDate}>
                                         <defs>
@@ -334,7 +343,7 @@ export default function Dashboard() {
 
                         <section className="charts-grid">
                             <div className="chart-card fade-in-up" style={{ animationDelay: '0.6s' }}>
-                                <h3>Top 5 Productos</h3>
+                                <h3>{t('dashboard.topProducts')}</h3>
                                 {topProducts.length > 0 ? (
                                     <ResponsiveContainer width="100%" height={300}>
                                         <BarChart data={topProducts} layout="vertical">
@@ -353,12 +362,12 @@ export default function Dashboard() {
                                         </BarChart>
                                     </ResponsiveContainer>
                                 ) : (
-                                    <p className="no-data">No hay datos suficientes</p>
+                                    <p className="no-data">{t('dashboard.noData')}</p>
                                 )}
                             </div>
 
                             <div className="chart-card fade-in-up" style={{ animationDelay: '0.7s' }}>
-                                <h3>Ventas por Categoría</h3>
+                                <h3>{t('dashboard.salesByCategory')}</h3>
                                 {salesByCategory.length > 0 ? (
                                     <>
                                         <ResponsiveContainer width="100%" height={250}>
@@ -396,12 +405,12 @@ export default function Dashboard() {
                                         </div>
                                     </>
                                 ) : (
-                                    <p className="no-data">No hay datos suficientes</p>
+                                    <p className="no-data">{t('dashboard.noData')}</p>
                                 )}
                             </div>
 
                             <div className="chart-card fade-in-up" style={{ animationDelay: '0.8s' }}>
-                                <h3>Distribución por Región</h3>
+                                <h3>{t('dashboard.salesByRegion')}</h3>
                                 {salesByRegion.length > 0 ? (
                                     <>
                                         <ResponsiveContainer width="100%" height={250}>
@@ -441,35 +450,47 @@ export default function Dashboard() {
                                 ) : (
                                     <div className="no-data-state">
                                         <Globe size={48} className="no-data-icon-svg" />
-                                        <p className="no-data">Sin datos de región</p>
-                                        <p className="no-data-hint">Añade la columna "region" a tu Excel</p>
+                                        <p className="no-data">{t('dashboard.noData')}</p>
+                                        <p className="no-data-hint">{t('upload.region')}</p>
                                     </div>
                                 )}
                             </div>
 
                             <div className="chart-card fade-in-up" style={{ animationDelay: '0.9s' }}>
-                                <h3>Últimos Registros</h3>
+                                <h3>{t('reports.salesData')}</h3>
                                 {recentSales.length > 0 ? (
-                                    <table className="sales-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Producto</th>
-                                                <th>Monto</th>
-                                                <th>Fecha</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {recentSales.map((sale) => (
-                                                <tr key={sale.id}>
-                                                    <td>{sale.product}</td>
-                                                    <td>${sale.amount.toLocaleString()}</td>
-                                                    <td>{sale.date}</td>
+                                    <>
+                                        <table className="sales-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>{t('upload.product')}</th>
+                                                    <th>{t('upload.total')}</th>
+                                                    <th>{t('upload.date')}</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {recentSales
+                                                    .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+                                                    .map((sale) => (
+                                                        <tr key={sale.id}>
+                                                            <td>{sale.product}</td>
+                                                            <td>${sale.amount.toLocaleString()}</td>
+                                                            <td>{sale.date}</td>
+                                                        </tr>
+                                                    ))}
+                                            </tbody>
+                                        </table>
+                                        <Pagination
+                                            currentPage={currentPage}
+                                            totalPages={Math.ceil(recentSales.length / itemsPerPage)}
+                                            itemsPerPage={itemsPerPage}
+                                            totalItems={recentSales.length}
+                                            onPageChange={setCurrentPage}
+                                            onItemsPerPageChange={setItemsPerPage}
+                                        />
+                                    </>
                                 ) : (
-                                    <p className="no-data">No hay ventas recientes</p>
+                                    <p className="no-data">{t('dashboard.noData')}</p>
                                 )}
                             </div>
                         </section>

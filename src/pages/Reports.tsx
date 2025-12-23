@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../hooks/useAuth';
 import Swal from 'sweetalert2';
@@ -11,6 +12,7 @@ import { FileText, FileSpreadsheet, ArrowLeft, Calendar, Tag, Download } from 'l
 import type { Sale } from '../types';
 
 export default function Reports() {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const { user } = useAuth();
     const [sales, setSales] = useState<Sale[]>([]);
@@ -350,7 +352,7 @@ export default function Reports() {
                     <button onClick={() => navigate('/dashboard')} className="back-button">
                         <ArrowLeft size={18} /> Dashboard
                     </button>
-                    <h1>Reportes</h1>
+                    <h1>{t('reports.title')}</h1>
                 </div>
                 <div className="header-right">
                     <span className="user-email">{user?.email}</span>
@@ -361,90 +363,90 @@ export default function Reports() {
                 {loading ? (
                     <div className="loading-screen">
                         <div className="spinner"></div>
-                        <p>Cargando datos...</p>
+                        <p>{t('reports.loadingData')}</p>
                     </div>
                 ) : sales.length === 0 ? (
                     <div className="empty-state fade-in">
                         <FileText size={64} className="empty-icon-svg" />
-                        <h2>No hay datos para reportes</h2>
-                        <p>Primero sube un archivo Excel/CSV desde el Dashboard</p>
-                        <button onClick={() => navigate('/upload')} className="upload-nav-button">Subir Datos</button>
+                        <h2>{t('reports.noData')}</h2>
+                        <p>{t('upload.dropZoneSubtitle')}</p>
+                        <button onClick={() => navigate('/upload')} className="upload-nav-button">{t('dashboard.upload')}</button>
                     </div>
                 ) : (
                     <>
                         <section className="filters-section fade-in">
                             <div className="filter-group">
                                 <Calendar size={18} />
-                                <label>Período:</label>
+                                <label>{t('dashboard.filters')}:</label>
                                 <select value={dateRange} onChange={(e) => setDateRange(e.target.value as typeof dateRange)} className="filter-select">
-                                    <option value="all">Todo</option>
-                                    <option value="7days">7 días</option>
-                                    <option value="30days">30 días</option>
-                                    <option value="90days">90 días</option>
+                                    <option value="all">{t('dashboard.all')}</option>
+                                    <option value="7days">{t('dashboard.last7Days')}</option>
+                                    <option value="30days">{t('dashboard.last30Days')}</option>
+                                    <option value="90days">{t('dashboard.last90Days')}</option>
                                 </select>
                             </div>
                             <div className="filter-group">
                                 <Tag size={18} />
-                                <label>Categoría:</label>
+                                <label>{t('dashboard.category')}:</label>
                                 <select value={category} onChange={(e) => setCategory(e.target.value)} className="filter-select">
-                                    <option value="all">Todas</option>
+                                    <option value="all">{t('dashboard.all')}</option>
                                     {categories.map(cat => (<option key={cat} value={cat}>{cat}</option>))}
                                 </select>
                             </div>
                         </section>
 
                         <section className="report-summary fade-in-up">
-                            <h2>Resumen del Período</h2>
+                            <h2>{t('reports.summary')}</h2>
                             <div className="summary-grid">
                                 <div className="summary-card">
-                                    <span className="summary-label">Ventas Totales</span>
+                                    <span className="summary-label">{t('dashboard.totalSales')}</span>
                                     <span className="summary-value">${metrics.totalSales.toLocaleString()}</span>
                                 </div>
                                 <div className="summary-card">
-                                    <span className="summary-label">Registros</span>
-                                    <span className="summary-value">{metrics.totalOrders}</span>
+                                    <span className="summary-label">{t('dashboard.totalOrders')}</span>
+                                    <span className="summary-value">{metrics.totalOrders.toLocaleString()}</span>
                                 </div>
                                 <div className="summary-card">
-                                    <span className="summary-label">Promedio</span>
+                                    <span className="summary-label">{t('dashboard.avgOrderValue')}</span>
                                     <span className="summary-value">${metrics.avgOrderValue.toFixed(2)}</span>
                                 </div>
                             </div>
                         </section>
 
                         <section className="export-section fade-in-up">
-                            <h2>Exportar Datos</h2>
+                            <h2>{t('reports.exportOptions')}</h2>
                             <div className="export-options">
                                 <div className="export-card">
                                     <FileText size={48} className="export-icon-svg" />
-                                    <h3>Exportar a PDF</h3>
-                                    <p>Reporte visual con tablas, ideal para presentaciones</p>
+                                    <h3>{t('reports.exportPDF')}</h3>
+                                    <p>{t('reports.pdfDescription')}</p>
                                     <button onClick={exportToPDF} disabled={exportingPdf} className="export-button pdf">
                                         <Download size={16} />
-                                        {exportingPdf ? 'Generando...' : 'Descargar PDF'}
+                                        {exportingPdf ? t('reports.exporting') : t('reports.exportPDF')}
                                     </button>
                                 </div>
                                 <div className="export-card">
                                     <FileSpreadsheet size={48} className="export-icon-svg" />
-                                    <h3>Exportar a Excel</h3>
-                                    <p>Datos completos editables para análisis avanzado</p>
+                                    <h3>{t('reports.exportExcel')}</h3>
+                                    <p>{t('reports.excelDescription')}</p>
                                     <button onClick={exportToExcel} disabled={exportingExcel} className="export-button excel">
                                         <Download size={16} />
-                                        {exportingExcel ? 'Generando...' : 'Descargar Excel'}
+                                        {exportingExcel ? t('reports.exporting') : t('reports.exportExcel')}
                                     </button>
                                 </div>
                             </div>
                         </section>
 
                         <section className="data-preview fade-in-up">
-                            <h2>Vista Previa ({filteredSales.length} registros)</h2>
+                            <h2>{t('reports.salesData')} ({filteredSales.length})</h2>
                             <div className="preview-table-container">
                                 <table className="preview-table">
                                     <thead>
                                         <tr>
-                                            <th>Fecha</th>
-                                            <th>Producto</th>
-                                            <th>Categoría</th>
-                                            <th>Monto</th>
+                                            <th>{t('upload.date')}</th>
+                                            <th>{t('upload.product')}</th>
+                                            <th>{t('upload.category')}</th>
+                                            <th>{t('upload.total')}</th>
                                         </tr>
                                     </thead>
                                     <tbody>

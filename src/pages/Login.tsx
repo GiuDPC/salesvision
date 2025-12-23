@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { signIn, signUp } from '../lib/supabase';
 import Swal from 'sweetalert2';
 import { LogIn, UserPlus, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 
 export default function Login() {
+    const { t } = useTranslation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLogin, setIsLogin] = useState(true);
@@ -91,25 +93,25 @@ export default function Login() {
                     onSubmit={handleSubmit}
                     className={`login-form ${isLogin ? 'login-mode' : 'register-mode'}`}
                 >
-                    <h2>{isLogin ? 'Iniciar Sesión' : 'Crear Cuenta'}</h2>
+                    <h2>{isLogin ? t('login.loginTitle') : t('login.registerTitle')}</h2>
 
                     <div className="form-group">
                         <label htmlFor="email">
-                            <Mail size={16} /> Email
+                            <Mail size={16} /> {t('login.email')}
                         </label>
                         <input
                             id="email"
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="tu@email.com"
+                            placeholder={t('login.emailPlaceholder')}
                             required
                         />
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="password">
-                            <Lock size={16} /> Contraseña
+                            <Lock size={16} /> {t('login.password')}
                         </label>
                         <div className="password-input-wrapper">
                             <input
@@ -125,7 +127,7 @@ export default function Login() {
                                 type="button"
                                 className="password-toggle-button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                                aria-label={showPassword ? t('login.hidePassword') : t('login.showPassword')}
                             >
                                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                             </button>
@@ -138,7 +140,7 @@ export default function Login() {
                         )}
 
                         {!isLogin && password.length > 0 && password.length < 6 && (
-                            <p className="password-hint">La contraseña debe tener al menos 6 caracteres</p>
+                            <p className="password-hint">{t('login.passwordMinLength')}</p>
                         )}
                     </div>
 
@@ -146,18 +148,18 @@ export default function Login() {
                         {loading ? (
                             <>
                                 <div className="spinner-small"></div>
-                                Procesando...
+                                {t('login.processing')}
                             </>
                         ) : (
                             <>
                                 {isLogin ? <LogIn size={18} /> : <UserPlus size={18} />}
-                                {isLogin ? 'Iniciar Sesión' : 'Crear Cuenta'}
+                                {isLogin ? t('login.loginButton') : t('login.registerButton')}
                             </>
                         )}
                     </button>
 
                     <p className="toggle-mode">
-                        {isLogin ? '¿No tienes cuenta? ' : '¿Ya tienes cuenta? '}
+                        {isLogin ? t('login.noAccount') + ' ' : t('login.hasAccount') + ' '}
                         <button
                             type="button"
                             onClick={() => {
@@ -166,7 +168,7 @@ export default function Login() {
                             }}
                             className="link-button"
                         >
-                            {isLogin ? 'Regístrate aquí' : 'Inicia sesión'}
+                            {isLogin ? t('login.registerHere') : t('login.loginHere')}
                         </button>
                     </p>
                 </form>

@@ -128,8 +128,74 @@ Las empresas manejan sus datos de ventas en hojas de Excel dispersas, lo que dif
 | Gráfica de Tendencia | Visualiza ventas por día |
 | Exportar PDF | Reporte visual con tablas |
 | Exportar Excel | 6 hojas con análisis completo |
-| Tema Oscuro | Diseño moderno |
+| Tema Oscuro/Claro | Toggle en el header |
+| Idiomas ES/EN | Selector de idioma dinámico |
 | Responsive | Desktop y móvil |
+
+### Features Avanzadas
+
+#### Internacionalización (i18n)
+
+Soporte completo para Español e Inglés implementado con `react-i18next`.
+
+| Archivo | Descripción |
+|---------|-------------|
+| `src/i18n/config.ts` | Configuración de idiomas |
+| `src/i18n/locales/es.json` | Traducciones en español (151 textos) |
+| `src/i18n/locales/en.json` | Traducciones en inglés (151 textos) |
+
+**Uso:** Selector de idioma visible en el header del Dashboard.
+
+#### Dark/Light Mode
+
+Sistema de temas implementado con React Context.
+
+| Archivo | Descripción |
+|---------|-------------|
+| `src/contexts/ThemeContext.tsx` | Provider del tema |
+| `src/components/ThemeToggle.tsx` | Botón de cambio |
+| `src/hooks/useTheme.ts` | Hook personalizado |
+
+**Persistencia:** El tema seleccionado se guarda en localStorage.
+
+#### Testing con Vitest
+
+Suite de tests automatizados para el componente Login.
+
+```bash
+npm run test        # Ejecutar tests
+npm run test:ui     # Interfaz visual
+npm run test:coverage  # Cobertura de código
+```
+
+**Tests incluidos:**
+- Renderizado del formulario
+- Toggle login/registro
+- Visibilidad de contraseña
+- Indicador de fuerza
+- Manejo de submit
+- Validación de contraseña
+
+#### Paginación
+
+Componente reutilizable para tablas con datos extensos.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| currentPage | number | Página actual |
+| totalPages | number | Total de páginas |
+| itemsPerPage | number | Items por página (10/20/50) |
+| onPageChange | function | Callback de cambio |
+
+#### Error Boundary
+
+Componente que captura errores de JavaScript y muestra una interfaz amigable.
+
+| Característica | Descripción |
+|----------------|-------------|
+| Error Display | Mensaje amigable para usuarios |
+| Dev Details | Stack trace visible solo en desarrollo |
+| Recovery | Botón para recargar la página |
 
 ### Excel Export (6 hojas)
 
@@ -217,23 +283,41 @@ npm run dev
 ```
 salesvision/
 ├── src/
-│   ├── pages/
-│   │   ├── Login.tsx
-│   │   ├── Dashboard.tsx
-│   │   ├── Upload.tsx
-│   │   └── Reports.tsx
+│   ├── components/
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── LanguageSelector.tsx
+│   │   ├── Pagination.tsx
+│   │   └── ThemeToggle.tsx
+│   ├── contexts/
+│   │   └── ThemeContext.tsx
 │   ├── hooks/
-│   │   └── useAuth.ts
+│   │   ├── useAuth.ts
+│   │   └── useTheme.ts
+│   ├── i18n/
+│   │   ├── config.ts
+│   │   └── locales/
+│   │       ├── es.json
+│   │       └── en.json
 │   ├── lib/
 │   │   └── supabase.ts
+│   ├── pages/
+│   │   ├── __tests__/
+│   │   │   └── Login.test.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── Login.tsx
+│   │   ├── Reports.tsx
+│   │   └── Upload.tsx
+│   ├── test/
+│   │   ├── jest-dom.d.ts
+│   │   └── setup.ts
 │   ├── types/
 │   │   └── index.ts
-│   ├── assets/
-│   │   └── SalesVision.png
+│   ├── App.css
 │   ├── App.tsx
-│   └── App.css
+│   └── main.tsx
 ├── docs/
 │   └── screenshots/
+├── vitest.config.ts
 ├── sample_data.csv
 └── package.json
 ```
@@ -281,6 +365,9 @@ npm run build
 | `npm run build` | Build producción |
 | `npm run preview` | Preview del build |
 | `npm run lint` | Verificar código |
+| `npm run test` | Ejecutar tests |
+| `npm run test:ui` | Tests con interfaz visual |
+| `npm run test:coverage` | Cobertura de código |
 
 ---
 
