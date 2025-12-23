@@ -1,0 +1,101 @@
+producto,categoria,cantidad,precio,total,fecha,region,vendedor
+Laptop HP ProBook,Electrónica,1,1200,1200,2024-12-22,Norte,Juan García
+iPhone 15 Pro,Electrónica,1,1299,1299,2024-12-22,Sur,María López
+Samsung Galaxy S24,Electrónica,1,899,899,2024-12-21,Centro,Carlos Pérez
+Monitor Dell 27",Electrónica,2,350,700,2024-12-21,Norte,Ana Martínez
+Teclado Logitech MX,Electrónica,3,120,360,2024-12-20,Este,Pedro Sánchez
+Mouse Razer,Electrónica,4,80,320,2024-12-20,Sur,María López
+Auriculares Sony WH,Electrónica,2,250,500,2024-12-19,Centro,Juan García
+Webcam Logitech C920,Electrónica,3,100,300,2024-12-19,Norte,Carlos Pérez
+iPad Pro 12.9,Electrónica,1,1099,1099,2024-12-18,Este,Ana Martínez
+MacBook Air M2,Electrónica,1,1199,1199,2024-12-18,Sur,Pedro Sánchez
+Camisa Tommy Hilfiger,Ropa,2,85,170,2024-12-22,Norte,María López
+Pantalón Levi's 501,Ropa,3,75,225,2024-12-22,Centro,Juan García
+Zapatos Nike Air,Ropa,1,150,150,2024-12-21,Sur,Carlos Pérez
+Chaqueta North Face,Ropa,1,280,280,2024-12-21,Este,Ana Martínez
+Sudadera Adidas,Ropa,2,90,180,2024-12-20,Norte,Pedro Sánchez
+Vestido Zara,Ropa,1,120,120,2024-12-20,Centro,María López
+Gorra New Era,Ropa,4,35,140,2024-12-19,Sur,Juan García
+Bufanda Burberry,Ropa,1,200,200,2024-12-19,Este,Carlos Pérez
+Cinturón Gucci,Ropa,1,350,350,2024-12-18,Norte,Ana Martínez
+Zapatillas Puma,Ropa,2,95,190,2024-12-18,Centro,Pedro Sánchez
+Escritorio IKEA,Muebles,1,250,250,2024-12-22,Sur,María López
+Silla Gamer,Muebles,1,300,300,2024-12-22,Norte,Juan García
+Estantería Madera,Muebles,1,180,180,2024-12-21,Este,Carlos Pérez
+Mesa Centro,Muebles,1,220,220,2024-12-21,Centro,Ana Martínez
+Lámpara LED,Muebles,3,45,135,2024-12-20,Sur,Pedro Sánchez
+Sofá 3 Plazas,Muebles,1,650,650,2024-12-20,Norte,María López
+Cama Queen,Muebles,1,500,500,2024-12-19,Este,Juan García
+Armario 4 Puertas,Muebles,1,400,400,2024-12-19,Centro,Carlos Pérez
+Mesita Noche,Muebles,2,80,160,2024-12-18,Sur,Ana Martínez
+Espejo Pared,Muebles,1,120,120,2024-12-18,Norte,Pedro Sánchez
+Café Premium,Alimentos,10,15,150,2024-12-22,Norte,María López
+Aceite Oliva,Alimentos,5,18,90,2024-12-22,Centro,Juan García
+Vino Tinto,Alimentos,6,25,150,2024-12-21,Sur,Carlos Pérez
+Queso Manchego,Alimentos,3,22,66,2024-12-21,Este,Ana Martínez
+Jamón Ibérico,Alimentos,2,85,170,2024-12-20,Norte,Pedro Sánchez
+Chocolate Belga,Alimentos,8,12,96,2024-12-20,Centro,María López
+Miel Orgánica,Alimentos,4,15,60,2024-12-19,Sur,Juan García
+Pasta Italiana,Alimentos,12,8,96,2024-12-19,Este,Carlos Pérez
+Arroz Basmati,Alimentos,6,10,60,2024-12-18,Norte,Ana Martínez
+Especias Set,Alimentos,3,20,60,2024-12-18,Centro,Pedro Sánchez
+Laptop Dell XPS,Electrónica,1,1500,1500,2024-12-17,Sur,María López
+Surface Pro 9,Electrónica,1,1100,1100,2024-12-17,Norte,Juan García
+AirPods Pro,Electrónica,2,250,500,2024-12-16,Este,Carlos Pérez
+Apple Watch,Electrónica,1,399,399,2024-12-16,Centro,Ana Martínez
+Kindle Paperwhite,Electrónica,2,140,280,2024-12-15,Sur,Pedro Sánchez
+PS5 Console,Electrónica,1,499,499,2024-12-15,Norte,María López
+Nintendo Switch,Electrónica,1,299,299,2024-12-14,Este,Juan García
+Xbox Controller,Electrónica,3,60,180,2024-12-14,Centro,Carlos Pérez
+SSD Samsung 1TB,Electrónica,2,100,200,2024-12-13,Sur,Ana Martínez
+RAM 32GB Kit,Electrónica,1,150,150,2024-12-13,Norte,Pedro Sánchez
+Camiseta básica,Ropa,5,20,100,2024-12-17,Centro,María López
+Jeans Wrangler,Ropa,2,65,130,2024-12-17,Sur,Juan García
+Blazer Hugo Boss,Ropa,1,350,350,2024-12-16,Norte,Carlos Pérez
+Corbata Hermès,Ropa,1,180,180,2024-12-16,Este,Ana Martínez
+Calcetines Pack,Ropa,4,15,60,2024-12-15,Centro,Pedro Sánchez
+Polo Lacoste,Ropa,2,95,190,2024-12-15,Sur,María López
+Shorts Deportivos,Ropa,3,40,120,2024-12-14,Norte,Juan García
+Abrigo Massimo Dutti,Ropa,1,300,300,2024-12-14,Este,Carlos Pérez
+Pijama Seda,Ropa,1,85,85,2024-12-13,Centro,Ana Martínez
+Guantes Cuero,Ropa,2,60,120,2024-12-13,Sur,Pedro Sánchez
+Mesa Comedor 6p,Muebles,1,450,450,2024-12-17,Norte,María López
+Sillón Reclinable,Muebles,1,380,380,2024-12-17,Este,Juan García
+Librería Modular,Muebles,1,280,280,2024-12-16,Centro,Carlos Pérez
+Tocador c/Espejo,Muebles,1,220,220,2024-12-16,Sur,Ana Martínez
+Cómoda 5 Cajones,Muebles,1,260,260,2024-12-15,Norte,Pedro Sánchez
+Banco Jardín,Muebles,1,150,150,2024-12-15,Este,María López
+Perchero Entrada,Muebles,1,90,90,2024-12-14,Centro,Juan García
+Alfombra Persa,Muebles,1,400,400,2024-12-14,Sur,Carlos Pérez
+Cortinas Set,Muebles,2,75,150,2024-12-13,Norte,Ana Martínez
+Cojines Decorativos,Muebles,4,30,120,2024-12-13,Este,Pedro Sánchez
+Té Premium Box,Alimentos,5,18,90,2024-12-17,Centro,María López
+Nueces Mixtas,Alimentos,4,20,80,2024-12-17,Sur,Juan García
+Salmon Ahumado,Alimentos,3,35,105,2024-12-16,Norte,Carlos Pérez
+Caviar Beluga,Alimentos,1,150,150,2024-12-16,Este,Ana Martínez
+Trufa Negra,Alimentos,1,120,120,2024-12-15,Centro,Pedro Sánchez
+Foie Gras,Alimentos,2,45,90,2024-12-15,Sur,María López
+Champagne Moët,Alimentos,2,80,160,2024-12-14,Norte,Juan García
+Whisky 18 años,Alimentos,1,95,95,2024-12-14,Este,Carlos Pérez
+Café Gourmet,Alimentos,3,25,75,2024-12-13,Centro,Ana Martínez
+Chorizo Ibérico,Alimentos,2,30,60,2024-12-13,Sur,Pedro Sánchez
+Laptop Asus ROG,Electrónica,1,1800,1800,2024-12-12,Norte,María López
+Monitor Gaming,Electrónica,1,400,400,2024-12-12,Este,Juan García
+Teclado Mecánico,Electrónica,2,150,300,2024-12-11,Centro,Carlos Pérez
+Cámara Canon EOS,Electrónica,1,850,850,2024-12-11,Sur,Ana Martínez
+Drone DJI Mini,Electrónica,1,600,600,2024-12-10,Norte,Pedro Sánchez
+GoPro Hero 11,Electrónica,1,399,399,2024-12-10,Este,María López
+Tablet Samsung,Electrónica,1,450,450,2024-12-09,Centro,Juan García
+E-Reader Kobo,Electrónica,2,130,260,2024-12-09,Sur,Carlos Pérez
+Smart Speaker,Electrónica,3,100,300,2024-12-08,Norte,Ana Martínez
+Proyector Epson,Electrónica,1,550,550,2024-12-08,Este,Pedro Sánchez
+Traje Completo,Ropa,1,500,500,2024-12-12,Centro,María López
+Vestido Noche,Ropa,1,280,280,2024-12-12,Sur,Juan García
+Botas Timberland,Ropa,1,180,180,2024-12-11,Norte,Carlos Pérez
+Mocasines Clarks,Ropa,1,150,150,2024-12-11,Este,Ana Martínez
+Cartera Coach,Ropa,1,200,200,2024-12-10,Centro,Pedro Sánchez
+Bolso Michael Kors,Ropa,1,280,280,2024-12-10,Sur,María López
+Reloj Fossil,Ropa,1,175,175,2024-12-09,Norte,Juan García
+Gafas Ray-Ban,Ropa,1,160,160,2024-12-09,Este,Carlos Pérez
+Pañuelo Seda,Ropa,2,45,90,2024-12-08,Centro,Ana Martínez
+Paraguas Premium,Ropa,1,65,65,2024-12-08,Sur,Pedro Sánchez
