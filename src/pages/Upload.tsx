@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as ExcelJS from 'exceljs';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../hooks/useAuth';
-import { toast } from 'sonner';
+import Swal from 'sweetalert2';
 import { ArrowLeft, FileSpreadsheet, X, Check, CloudUpload } from 'lucide-react';
 
 export default function UploadPage() {
@@ -165,12 +165,31 @@ export default function UploadPage() {
                 uploaded_by: user?.id
             });
 
-            toast.success(`${salesData.length} ventas guardadas`);
+            await Swal.fire({
+                title: '¡Éxito!',
+                text: `${salesData.length} ventas guardadas correctamente`,
+                icon: 'success',
+                confirmButtonText: 'Ver Dashboard',
+                confirmButtonColor: '#8b5cf6',
+                background: '#1e293b',
+                color: '#f1f5f9',
+                timer: 2000,
+            });
+
             navigate('/dashboard');
 
         } catch (err: any) {
             console.error('Error:', err);
-            toast.error(err.message || 'Error al guardar');
+
+            await Swal.fire({
+                title: 'Error',
+                text: err.message || 'Error al guardar los datos',
+                icon: 'error',
+                confirmButtonText: 'Entendido',
+                confirmButtonColor: '#ef4444',
+                background: '#1e293b',
+                color: '#f1f5f9',
+            });
             setError(err.message || 'Error al guardar los datos');
         } finally {
             setUploading(false);

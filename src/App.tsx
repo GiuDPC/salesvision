@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Toaster } from 'sonner';
 import { useAuth } from './hooks/useAuth';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -30,21 +29,6 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 function App() {
   return (
     <BrowserRouter>
-      {/* Configuración de notificaciones toast - tema oscuro */}
-      <Toaster
-        theme="dark"
-        position="top-right"
-        richColors
-        closeButton
-        toastOptions={{
-          style: {
-            background: '#1e293b',
-            border: '1px solid #334155',
-            color: '#f1f5f9',
-          },
-        }}
-      />
-
       <Routes>
         <Route path="/login" element={<Login />} />
 

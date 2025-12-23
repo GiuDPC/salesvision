@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../hooks/useAuth';
-import { toast } from 'sonner';
+import Swal from 'sweetalert2';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
@@ -88,7 +88,14 @@ export default function Reports() {
 
     const exportToPDF = async () => {
         if (filteredSales.length === 0) {
-            toast.error('No hay datos para exportar');
+            await Swal.fire({
+                title: 'Sin datos',
+                text: 'No hay datos para exportar',
+                icon: 'warning',
+                confirmButtonColor: '#8b5cf6',
+                background: '#1e293b',
+                color: '#f1f5f9',
+            });
             return;
         }
         setExportingPdf(true);
@@ -143,10 +150,27 @@ export default function Reports() {
             });
 
             doc.save(`salesvision_reporte_${new Date().toISOString().split('T')[0]}.pdf`);
-            toast.success('PDF descargado');
+
+            await Swal.fire({
+                title: '¡PDF Descargado!',
+                text: 'El reporte PDF se ha descargado correctamente',
+                icon: 'success',
+                confirmButtonColor: '#8b5cf6',
+                background: '#1e293b',
+                color: '#f1f5f9',
+                timer: 2000,
+            });
         } catch (error) {
             console.error('Error generating PDF:', error);
-            toast.error('Error al generar PDF');
+
+            await Swal.fire({
+                title: 'Error',
+                text: 'Error al generar el PDF',
+                icon: 'error',
+                confirmButtonColor: '#ef4444',
+                background: '#1e293b',
+                color: '#f1f5f9',
+            });
         } finally {
             setExportingPdf(false);
         }
@@ -154,7 +178,14 @@ export default function Reports() {
 
     const exportToExcel = async () => {
         if (filteredSales.length === 0) {
-            toast.error('No hay datos para exportar');
+            await Swal.fire({
+                title: 'Sin datos',
+                text: 'No hay datos para exportar',
+                icon: 'warning',
+                confirmButtonColor: '#8b5cf6',
+                background: '#1e293b',
+                color: '#f1f5f9',
+            });
             return;
         }
         setExportingExcel(true);
@@ -287,10 +318,26 @@ export default function Reports() {
             const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
             saveAs(blob, `SalesVision_Reporte_${new Date().toISOString().split('T')[0]}.xlsx`);
 
-            toast.success('Excel descargado');
+            await Swal.fire({
+                title: '¡Excel Descargado!',
+                text: 'El reporte Excel se ha descargado correctamente',
+                icon: 'success',
+                confirmButtonColor: '#8b5cf6',
+                background: '#1e293b',
+                color: '#f1f5f9',
+                timer: 2000,
+            });
         } catch (error) {
             console.error('Error generating Excel:', error);
-            toast.error('Error al generar Excel');
+
+            await Swal.fire({
+                title: 'Error',
+                text: 'Error al generar el archivo Excel',
+                icon: 'error',
+                confirmButtonColor: '#ef4444',
+                background: '#1e293b',
+                color: '#f1f5f9',
+            });
         } finally {
             setExportingExcel(false);
         }

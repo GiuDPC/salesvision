@@ -1182,3 +1182,305 @@ button {
   align-items: center;
   gap: 1rem;
 }
+
+/* ============================================
+   PASSWORD TOGGLE & STRENGTH INDICATOR
+   ============================================ */
+.password-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-toggle-button {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle-button:hover {
+  color: var(--color-primary);
+}
+
+.password-strength {
+  margin-top: 0.5rem;
+  height: 4px;
+  background: var(--bg-tertiary);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.password-strength-bar {
+  height: 100%;
+  transition: var(--transition);
+  border-radius: 2px;
+}
+
+.password-strength-bar.weak {
+  width: 33%;
+  background: var(--color-error);
+}
+
+.password-strength-bar.medium {
+  width: 66%;
+  background: var(--color-warning);
+}
+
+.password-strength-bar.strong {
+  width: 100%;
+  background: var(--color-success);
+}
+
+.password-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* Diferenciación visual Login vs Registro */
+.login-form.register-mode {
+  border-left: 3px solid var(--color-success);
+  padding-left: 0.80rem;
+}
+
+.login-form.login-mode {
+  border-left: 3px solid var(--color-primary);
+  padding-left: 0.80rem;
+}
+
+.login-form.register-mode h2 {
+  color: var(--color-success);
+}
+
+.login-form.login-mode h2 {
+  color: var(--color-primary);
+}
+
+/* Spinner pequeño para botones */
+.spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+/* ============================================
+   IMPROVED MOBILE RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+
+  /* Header más compacto */
+  .dashboard-header,
+  .reports-header,
+  .upload-header {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  .header-left h1 {
+    font-size: 1.25rem;
+  }
+
+  .user-email {
+    display: none;
+  }
+
+  /* Botones de navegación más pequeños */
+  .upload-nav-button,
+  .reports-nav-button,
+  .back-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .logout-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  /* Métricas en una columna */
+  .metrics-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  .metric-card {
+    padding: 1.25rem;
+  }
+
+  .metric-icon-wrap {
+    width: 48px;
+    height: 48px;
+  }
+
+  .metric-value {
+    font-size: 1.5rem !important;
+  }
+
+  .metric-content h3 {
+    font-size: 0.8rem;
+  }
+
+  /* Gráficas full width */
+  .charts-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .chart-card {
+    padding: 1rem;
+  }
+
+  .chart-card h3 {
+    font-size: 1rem;
+  }
+
+  /* Filtros más compactos */
+  .filters-section {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+
+  .filter-select {
+    min-width: auto;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .filter-group label {
+    font-size: 0.75rem;
+  }
+
+  /* Login/Register en móvil */
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .login-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .form-group input {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .submit-button {
+    padding: 0.875rem;
+    font-size: 0.9rem;
+  }
+
+  /* Upload page mobile */
+  .drop-zone {
+    padding: 3rem 1.5rem;
+  }
+
+  .drop-icon-svg,
+  .file-icon-svg {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .file-button {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  /* Reports page mobile */
+  .export-options {
+    grid-template-columns: 1fr !important;
+  }
+
+  .export-card {
+    padding: 1.5rem;
+  }
+
+  .export-icon-svg {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tables responsive */
+  .preview-table-container,
+  .data-preview .preview-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .preview-table,
+  .sales-table {
+    font-size: 0.75rem;
+  }
+
+  .preview-table th,
+  .preview-table td,
+  .sales-table th,
+  .sales-table td {
+    padding: 0.5rem;
+  }
+
+  /* Chart legends responsive */
+  .chart-legend {
+    font-size: 0.75rem;
+    gap: 1rem;
+  }
+
+  .legend-color {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 375px) {
+  .header-left {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .upload-nav-button,
+  .reports-nav-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dashboard-main,
+  .reports-main,
+  .upload-main {
+    padding: 1rem;
+  }
+
+  .metric-value {
+    font-size: 1.25rem !important;
+  }
+
+  .chart-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .login-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.8rem;
+  }
+}
