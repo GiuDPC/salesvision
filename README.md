@@ -46,6 +46,9 @@ Las empresas manejan sus datos de ventas en hojas de Excel dispersas, lo que dif
 
 ## Capturas de Pantalla
 
+### Vista General
+![SalesVision](docs/screenshots/Sales-vision.png)
+
 ### Login
 ![Login](docs/screenshots/Login.png)
 
