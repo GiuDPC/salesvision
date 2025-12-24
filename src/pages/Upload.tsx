@@ -249,7 +249,7 @@ export default function UploadPage() {
                                 }}
                                 className="remove-file"
                             >
-                                <X size={16} /> Quitar
+                                <X size={16} /> {t('upload.remove')}
                             </button>
                         </div>
                     )}
@@ -259,7 +259,7 @@ export default function UploadPage() {
 
                 {preview.length > 0 && (
                     <div className="preview-section fade-in-up">
-                        <h2>Vista Previa ({preview.length} filas)</h2>
+                        <h2>{t('upload.previewTitle')} ({preview.length} {t('upload.rows')})</h2>
                         <div className="preview-table-container">
                             <table className="preview-table">
                                 <thead>
@@ -287,7 +287,7 @@ export default function UploadPage() {
                             className="upload-button"
                         >
                             <Check size={18} />
-                            {uploading ? 'Guardando...' : 'Confirmar y Subir'}
+                            {uploading ? t('upload.saving') : t('upload.confirmAndUpload')}
                         </button>
                     </div>
                 )}

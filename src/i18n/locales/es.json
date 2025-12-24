@@ -89,7 +89,12 @@
         "errorColumns": "El archivo debe contener las columnas requeridas: Fecha, Producto, Cantidad, Precio.",
         "success": "¡Éxito!",
         "savedMessage": "{{count}} ventas guardadas correctamente",
-        "viewDashboard": "Ver Dashboard"
+        "viewDashboard": "Ver Dashboard",
+        "confirmAndUpload": "Confirmar y Subir",
+        "saving": "Guardando...",
+        "previewTitle": "Vista Previa",
+        "rows": "filas",
+        "remove": "Quitar"
     },
     "reports": {
         "title": "Reportes",

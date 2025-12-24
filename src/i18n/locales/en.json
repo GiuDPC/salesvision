@@ -89,7 +89,12 @@
         "errorColumns": "File must contain required columns: Date, Product, Quantity, Price.",
         "success": "Success!",
         "savedMessage": "{{count}} sales saved successfully",
-        "viewDashboard": "View Dashboard"
+        "viewDashboard": "View Dashboard",
+        "confirmAndUpload": "Confirm and Upload",
+        "saving": "Saving...",
+        "previewTitle": "Preview",
+        "rows": "rows",
+        "remove": "Remove"
     },
     "reports": {
         "title": "Reports",
